@@ -12,17 +12,22 @@ public class HelloRessources {
 
     @GET
     @Path("/hi")
-    @Produces (MediaType.TEXT_PLAIN)
-    public Response sayHello()
-    {
-        return Response.status(200).entity("Hello world!").build();
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response sayHello() {
+        return Response.
+                status(200).
+                entity("Hellooooooo!").
+                build();
     }
-
 
     @GET
     @Path("/{name}")
-    @Produces (MediaType.TEXT_PLAIN)
-    public Response sayHello (@PathParam(value = "name") String name){
-        return Response.status(200).entity("hello" +name+"!").build();
+    @Produces(MediaType.TEXT_PLAIN)
+
+    public Response sayHello2(@PathParam(value = "name") String name) {
+        return Response.
+                status(200).
+                entity("Hello"+ name).
+                build();
     }
 }

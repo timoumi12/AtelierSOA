@@ -1,10 +1,10 @@
 // URL de l'API côté serveur
-const apiUrl = "http://localhost:8088/LogementRendezVous_Etudiant_war/api/logement"
+const apiUrl = "http://localhost:8050/LogementRendezVous_Etudiant_war_exploded/api/logements"
 
 // Fonction pour récupérer tous les logements
 // Fonction pour récupérer tous les logements
 function getAllLogements() {
-    fetch(`${apiUrl}/all`, {
+    fetch(`${apiUrl}`, {
         method: "GET",
         headers: {
             "Accept": "application/json", // Se limiter à l'en-tête accept standard
@@ -77,6 +77,8 @@ function getLogementByRef() {
 }
 
 // Fonction pour ajouter un logement
+
+
 function addLogement() {
     // Créer un objet logement avec le format correct
     let logement = {
@@ -112,8 +114,6 @@ function addLogement() {
     .catch(error => console.error("Erreur :", error));
 }
 
-
-
 // Fonction pour mettre à jour un logement
 function updateLogement() {
     let ref = document.getElementById("updateRef").value;
@@ -125,7 +125,7 @@ function updateLogement() {
         description: document.getElementById("updateDescription").value,
         prix: document.getElementById("updatePrix").value
     };
- 
+    
     fetch(`${apiUrl}/update/${ref}`, {
         method: "PUT",
         headers: {

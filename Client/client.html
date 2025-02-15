@@ -3,46 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Logement API</title>
+    <title>Gestion Immobilière</title>
     <link rel="stylesheet" href="client.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Test Logement API</h1>
-        <button onclick="getAllLogements()">Afficher tous les logements</button>
-        <div id="logements" class="response-box"></div>
-
-        <h2>Rechercher un logement</h2>
-        <input type="number" id="searchRef" placeholder="Référence">
-        <button onclick="getLogementByRef()">Rechercher</button>
-        <div id="logement" class="response-box"></div>
-
-        <h2>Ajouter un logement</h2>
-        <div class="form-group">
-            <input type="number" id="ref" placeholder="Référence">
-            <input type="text" id="adresse" placeholder="Adresse">
-            <input type="text" id="delegation" placeholder="Délégation">
-            <input type="text" id="gouvernorat" placeholder="Gouvernorat">
-            <input type="text" id="type" placeholder="Type">
-            <input type="text" id="description" placeholder="Description">
-            <input type="number" id="prix" placeholder="Prix">
+    <div class="app-wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <span class="logo-icon"></span>
+                <span>ImmoGestPro</span>
+            </div>
+            <div class="nav-item active">Gestion des logements</div>
         </div>
-        <button onclick="addLogement()">Ajouter</button>
-
-        <h2>Mettre à jour un logement</h2>
-        <div class="form-group">
-            <!-- Champs pré-remplis lors de la recherche -->
-            <input type="number" id="updateRef" placeholder="Référence à mettre à jour">
-            <input type="text" id="updateAdresse" placeholder="Adresse">
-            <input type="text" id="updateDelegation" placeholder="Délégation">
-            <input type="text" id="updateGouvernorat" placeholder="Gouvernorat">
-            <input type="text" id="updateType" placeholder="Type">
-            <input type="text" id="updateDescription" placeholder="Description">
-            <input type="number" id="updatePrix" placeholder="Prix">
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Gestion des logements</h1>
+            </div>
+            
+            <div class="section">
+                <h2>Catalogue des propriétés</h2>
+                <button class="btn-view" onclick="getAllLogements()">Afficher tous les logements</button>
+                <div id="logements" class="response-box"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Recherche de propriété</h2>
+                <div class="form-grid" style="grid-template-columns: 2fr 1fr;">
+                    <input type="number" id="searchRef" placeholder="Entrez la référence du logement">
+                    <button onclick="getLogementByRef()">Rechercher</button>
+                </div>
+                <div id="logement" class="response-box"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Ajouter une nouvelle propriété</h2>
+                <div class="form-grid">
+                    <input type="number" id="ref" placeholder="Référence">
+                    <input type="text" id="adresse" placeholder="Adresse">
+                    <input type="text" id="delegation" placeholder="Délégation">
+                    <input type="text" id="gouvernorat" placeholder="Gouvernorat">
+                    <input type="text" id="type" placeholder="Type de propriété">
+                    <input type="number" id="prix" placeholder="Prix">
+                    <input type="text" id="description" placeholder="Description" style="grid-column: 1 / -1;">
+                </div>
+                <div style="text-align: right; margin-top: 1rem;">
+                    <button onclick="addLogement()">Ajouter la propriété</button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Modifier une propriété existante</h2>
+                <div class="form-grid">
+                    <input type="number" id="updateRef" placeholder="Référence à mettre à jour">
+                    <input type="text" id="updateAdresse" placeholder="Adresse">
+                    <input type="text" id="updateDelegation" placeholder="Délégation">
+                    <input type="text" id="updateGouvernorat" placeholder="Gouvernorat">
+                    <input type="text" id="updateType" placeholder="Type de propriété">
+                    <input type="number" id="updatePrix" placeholder="Prix">
+                    <input type="text" id="updateDescription" placeholder="Description" style="grid-column: 1 / -1;">
+                </div>
+                <div style="text-align: right; margin-top: 1rem;">
+                    <button onclick="updateLogement()">Mettre à jour la propriété</button>
+                </div>
+            </div>
         </div>
-        <button onclick="updateLogement()">Mettre à jour</button>
     </div>
-
+    
     <script src="client.js"></script>
 </body>
 </html>

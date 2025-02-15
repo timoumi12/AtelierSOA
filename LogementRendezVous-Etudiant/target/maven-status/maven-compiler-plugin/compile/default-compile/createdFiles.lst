@@ -1,5 +1,6 @@
-metiers\RendezVousBusiness.class
 entities\Logement.class
+webservices\LogementRessources.class
+metiers\RendezVousBusiness.class
 metiers\LogementBusiness.class
 webservices\HelloRessources.class
 ApplicationMain.class
