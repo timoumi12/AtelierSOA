@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logements Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Logement Management</h1>
+
+<section>
+    <h2>All Logements</h2>
+    <button onclick="getAllLogements()">Load Logements</button>
+    <ul id="logements-list"></ul>
+</section>
+
+<section>
+    <h2>Find Logement by Reference</h2>
+    <input type="number" id="searchRef" placeholder="Enter Reference">
+    <button onclick="getLogementByReference()">Search</button>
+    <p id="logement-detail"></p>
+</section>
+
+<section>
+    <h2>Filter by Delegation</h2>
+    <input type="text" id="searchDelegation" placeholder="Enter Delegation">
+    <button onclick="getLogementsByDelegation()">Filter</button>
+    <ul id="delegation-list"></ul>
+</section>
+
+<section>
+    <h2>Add New Logement</h2>
+    <input type="text" id="newLogement" placeholder="Enter Logement Details (JSON format)">
+    <button onclick="addLogement()">Add</button>
+</section>
+
+<section>
+    <h2>Update Logement</h2>
+    <input type="number" id="updateRef" placeholder="Reference">
+    <input type="text" id="updateLogement" placeholder="New Logement Data (JSON format)">
+    <button onclick="updateLogement()">Update</button>
+</section>
+
+<section>
+    <h2>Delete Logement</h2>
+    <input type="number" id="deleteRef" placeholder="Reference">
+    <button onclick="deleteLogement()">Delete</button>
+</section>
+
+<script>
+    const API_URL = "http://localhost:8050/api/logement";
+
+    function getAllLogements() {
+        fetch(`${API_URL}/getAll`)
+            .then(response => response.json())
+            .then(data => {
+                let list = document.getElementById("logements-list");
+                list.innerHTML = "";
+                data.forEach(logement => {
+                    let li = document.createElement("li");
+                    li.textContent = JSON.stringify(logement);
+                    list.appendChild(li);
+                });
+            });
+    }
+
+    function getLogementByReference() {
+        let ref = document.getElementById("searchRef").value;
+        fetch(`${API_URL}/${ref}`)
+            .then(response => response.json())
+            .then(data => document.getElementById("logement-detail").textContent = JSON.stringify(data))
+            .catch(() => alert("Logement not found"));
+    }
+
+    function getLogementsByDelegation() {
+        let delegation = document.getElementById("searchDelegation").value;
+        fetch(`${API_URL}/delegation/${delegation}`)
+            .then(response => response.json())
+            .then(data => {
+                let list = document.getElementById("delegation-list");
+                list.innerHTML = "";
+                data.forEach(logement => {
+                    let li = document.createElement("li");
+                    li.textContent = JSON.stringify(logement);
+                    list.appendChild(li);
+                });
+            });
+    }
+
+    function addLogement() {
+        let logementData = document.getElementById("newLogement").value;
+        fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: logementData
+        }).then(() => alert("Logement added successfully"));
+    }
+
+    function updateLogement() {
+        let ref = document.getElementById("updateRef").value;
+        let logementData = document.getElementById("updateLogement").value;
+        fetch(`${API_URL}/${ref}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: logementData
+        }).then(() => alert("Logement updated successfully"));
+    }
+
+    function deleteLogement() {
+        let ref = document.getElementById("deleteRef").value;
+        fetch(`${API_URL}/${ref}`, { method: "DELETE" })
+            .then(() => alert("Logement deleted successfully"));
+    }
+</script>
+</body>
+</html>
