@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Logement API</title>
+    <link rel="stylesheet" href="client.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Logement API</h1>
+        <button onclick="getAllLogements()">Afficher tous les logements</button>
+        <div id="logements" class="response-box"></div>
+
+        <h2>Rechercher un logement</h2>
+        <input type="number" id="searchRef" placeholder="Référence">
+        <button onclick="getLogementByRef()">Rechercher</button>
+        <div id="logement" class="response-box"></div>
+
+        <h2>Ajouter un logement</h2>
+        <div class="form-group">
+            <input type="number" id="ref" placeholder="Référence">
+            <input type="text" id="adresse" placeholder="Adresse">
+            <input type="text" id="delegation" placeholder="Délégation">
+            <input type="text" id="gouvernorat" placeholder="Gouvernorat">
+            <input type="text" id="type" placeholder="Type">
+            <input type="text" id="description" placeholder="Description">
+            <input type="number" id="prix" placeholder="Prix">
+        </div>
+        <button onclick="addLogement()">Ajouter</button>
+
+        <h2>Mettre à jour un logement</h2>
+        <div class="form-group">
+            <!-- Champs pré-remplis lors de la recherche -->
+            <input type="number" id="updateRef" placeholder="Référence à mettre à jour">
+            <input type="text" id="updateAdresse" placeholder="Adresse">
+            <input type="text" id="updateDelegation" placeholder="Délégation">
+            <input type="text" id="updateGouvernorat" placeholder="Gouvernorat">
+            <input type="text" id="updateType" placeholder="Type">
+            <input type="text" id="updateDescription" placeholder="Description">
+            <input type="number" id="updatePrix" placeholder="Prix">
+        </div>
+        <button onclick="updateLogement()">Mettre à jour</button>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
